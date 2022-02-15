@@ -66,7 +66,7 @@ class User(UserMixin,db.Model):
 
     #act like list of comments, comments is the property in comment class
     comments = relationship('Comment', back_populates = 'comment_author')
-db.create_all()
+# db.create_all()
 
 class BlogPost(UserMixin,db.Model):
     __tablename__ = "blog_posts"
@@ -84,7 +84,7 @@ class BlogPost(UserMixin,db.Model):
 
     #act like list of comments, comments is the property of comment class
     comments = relationship('Comment', back_populates = 'parent_post')
-db.create_all()
+# db.create_all()
 
 class Comment(db.Model):
     __tablename__ = "comments"
@@ -100,7 +100,7 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, ForeignKey('blog_posts.id'))
     #create a reference to the blogpost object
     parent_post = relationship('BlogPost', back_populates = 'comments')
-db.create_all()
+# db.create_all()
 
 
 admin = User.query.get(1)
